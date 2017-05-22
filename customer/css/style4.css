@@ -1,0 +1,32 @@
+.bodyFrame{
+	width:80%;
+	border:1px solid #666666;
+	text-align:justify;
+	
+}
+	.pageHeading{
+		background-color:#00b1b7;
+		height:25px;
+		text-align:center;
+		color:#FFFFFF;
+		font-family: 'Slabo 27px', serif;
+		font-size:110%;
+		font-weight:700;
+		
+		
+	}
+	.contentBoxHeading{
+		color:#CC6600;
+		font-family: 'Slabo 27px', serif;
+		font-size:95%;
+		font-weight:700;
+	}
+	.contentBox{
+		color:#333333;
+		font-family: 'Slabo 27px', serif;
+		font-size:90%;
+		font-weight:normal;
+		padding:8px;
+		border:0px;
+		padding:15px;
+	}

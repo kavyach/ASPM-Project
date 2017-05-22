@@ -1,0 +1,88 @@
+*{
+padding:0px;
+margin:0px;
+}
+#main{
+    background:#fbf3f3;
+height:auto;
+width:100%;
+}
+#innermain{
+background-color:#fbf3f3;
+width:100%;
+height:160px;
+}
+#main1{
+margin:0px 0px 0px 0px;
+
+}
+#left{
+background-color:#FFFFFF;
+width:100%;
+color:#FFFFFF;
+
+}
+
+#nav
+{
+    background-color:#000080;
+width:100%;
+height:30px;
+
+}
+#nav ul li{
+list-style:none;
+display:inline;
+font-size:20px;
+}
+#nav ul li a{
+text-decoration:none;
+padding:30px;
+color:White;
+text-transform:capitalize;
+margin-top:10px;
+}
+ ul li a
+{
+color:Black;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+text-transform:capitalize;
+
+}
+ul  li {
+list-style:none;
+padding:10px;
+
+}
+#right{
+    background:#fbf3f3;
+width:100%;
+height:500px;
+margin-left:0px;
+
+
+}
+
+#footer
+{
+    background-color:#000080;
+    width:100%;
+    height:100px;
+    
+}
+#footer ul li{
+    list-style:none;
+    display:inline;
+    font-size:20px;
+}
+#footer ul li a{
+    text-decoration:none;
+    padding:30px;
+    color:White;
+    text-transform:capitalize;
+    margin-top:10px;
+}
+
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } .datagrid {font: normal 12px/150% Georgia, Times New Roman, Times, serif; background: #fff; overflow: hidden; border: 1px solid #61305A; }.datagrid table td, .datagrid table th { padding: 7px 13px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #085599), color-stop(1, #191585) );background:-moz-linear-gradient( center top, #085599 5%, #191585 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#085599', endColorstr='#191585');background-color:#085599; color:#FFFFFF; font-size: 19px; font-weight: bold; border-left: 1px solid #61305A; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #61305A; border-left: 1px solid #61305A;font-size: 12px;border-bottom: 1px solid #E1EEF4;font-weight: bold; }.datagrid table tbody .alt td { background: #EDF2FF; color: #61305A; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }

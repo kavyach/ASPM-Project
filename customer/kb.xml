@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.4.10
+- http://www.phpmyadmin.net
+-
+- Host: localhost:8889
+- Generation Time: Dec 17, 2015 at 11:31 AM
+- Server version: 5.5.42
+- PHP Version: 5.6.10
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="kb" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="adminpanel">
+                CREATE TABLE `adminpanel` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `adminuser` varchar(30) NOT NULL,
+                  `adminpwd` varchar(30) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="MyCart">
+                CREATE TABLE `MyCart` (
+                  `cart_id` int(12) NOT NULL,
+                  `quantity` int(12) NOT NULL,
+                  `uid` int(11) NOT NULL,
+                  `product_id` int(11) NOT NULL,
+                  `store_id` int(11) NOT NULL,
+                  PRIMARY KEY (`cart_id`,`uid`,`product_id`,`store_id`),
+                  KEY `uid` (`uid`),
+                  KEY `product_id` (`product_id`),
+                  KEY `store_id` (`store_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="orders">
+                CREATE TABLE `orders` (
+                  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `payment_mode` varchar(30) NOT NULL,
+                  `payment_total` int(16) NOT NULL,
+                  `delivery_date` date NOT NULL,
+                  `status` varchar(25) NOT NULL,
+                  `cart_id` int(12) NOT NULL,
+                  PRIMARY KEY (`order_id`),
+                  KEY `cart_id` (`cart_id`),
+                  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `MyCart` (`cart_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="products">
+                CREATE TABLE `products` (
+                  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `product_name` varchar(50) NOT NULL,
+                  `description` varchar(5000) NOT NULL,
+                  `categoryid` int(11) NOT NULL,
+                  `store_id` int(11) NOT NULL,
+                  `Image` blob NOT NULL,
+                  `price` int(12) NOT NULL,
+                  `total_quantity` int(12) NOT NULL,
+                  PRIMARY KEY (`product_id`,`store_id`),
+                  KEY `categoryid` (`categoryid`),
+                  KEY `store_id` (`store_id`),
+                  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`categoryid`) REFERENCES `products_category` (`categoryid`),
+                  CONSTRAINT `products_ibfk_2` FOREIGN KEY (`store_id`) REFERENCES `stores` (`store_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="products_category">
+                CREATE TABLE `products_category` (
+                  `categoryid` int(11) NOT NULL AUTO_INCREMENT,
+                  `categoryname` varchar(100) NOT NULL,
+                  PRIMARY KEY (`categoryid`),
+                  KEY `categoryid` (`categoryid`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="stores">
+                CREATE TABLE `stores` (
+                  `store_id` int(11) NOT NULL,
+                  `store_name` varchar(12) NOT NULL,
+                  `location` varchar(40) NOT NULL,
+                  PRIMARY KEY (`store_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="users">
+                CREATE TABLE `users` (
+                  `uid` int(11) NOT NULL AUTO_INCREMENT,
+                  `fname` varchar(20) NOT NULL,
+                  `lname` varchar(20) NOT NULL,
+                  `dob` varchar(20) NOT NULL,
+                  `email` varchar(30) NOT NULL,
+                  `phone` longblob NOT NULL,
+                  `username` varchar(20) NOT NULL,
+                  `password` varchar(20) NOT NULL,
+                  `address` varchar(100) NOT NULL,
+                  PRIMARY KEY (`uid`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'kb'
+    -->
+    <database name="kb">
+        <!-- Table adminpanel -->
+        <table name="adminpanel">
+            <column name="id">1</column>
+            <column name="adminuser">admin</column>
+            <column name="adminpwd">admin</column>
+        </table>
+        <!-- Table MyCart -->
+        <table name="MyCart">
+            <column name="cart_id">1</column>
+            <column name="quantity">1</column>
+            <column name="uid">1</column>
+            <column name="product_id">1</column>
+            <column name="store_id">1</column>
+        </table>
+        <table name="MyCart">
+            <column name="cart_id">1</column>
+            <column name="quantity">10</column>
+            <column name="uid">1</column>
+            <column name="product_id">2</column>
+            <column name="store_id">1</column>
+        </table>
+        <table name="MyCart">
+            <column name="cart_id">1</column>
+            <column name="quantity">1</column>
+            <column name="uid">1</column>
+            <column name="product_id">12</column>
+            <column name="store_id">2</column>
+        </table>
+        <table name="MyCart">
+            <column name="cart_id">1</column>
+            <column name="quantity">3</column>
+            <column name="uid">1</column>
+            <column name="product_id">13</column>
+            <column name="store_id">1</column>
+        </table>
+        <table name="MyCart">
+            <column name="cart_id">1</column>
+            <column name="quantity">8</column>
+            <column name="uid">1</column>
+            <column name="product_id">17</column>
+            <column name="store_id">1</column>
+        </table>
+        <!-- Table orders -->
+        <!-- Table products -->
+        <table name="products">
+            <column name="product_id">1</column>
+            <column name="product_name">Strawberries</column>
+            <column name="description">Fresh Strawberries 500gm Box</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">40</column>
+            <column name="total_quantity">10</column>
+        </table>
+        <table name="products">
+            <column name="product_id">1</column>
+            <column name="product_name">Strawberries</column>
+            <column name="description">Fresh Strawberries 1kg Box</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">34</column>
+            <column name="total_quantity">13</column>
+        </table>
+        <table name="products">
+            <column name="product_id">2</column>
+            <column name="product_name">Tesco Bananas</column>
+            <column name="description">1kg organic bananas</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">14</column>
+            <column name="total_quantity">25</column>
+        </table>
+        <table name="products">
+            <column name="product_id">2</column>
+            <column name="product_name">Tesco Bananas</column>
+            <column name="description">1kg organic bananas</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">19</column>
+            <column name="total_quantity">25</column>
+        </table>
+        <table name="products">
+            <column name="product_id">2</column>
+            <column name="product_name">Tesco Bananas</column>
+            <column name="description">1 kg organic bananas</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">3</column>
+            <column name="Image">product9.jpg</column>
+            <column name="price">19</column>
+            <column name="total_quantity">20</column>
+        </table>
+        <table name="products">
+            <column name="product_id">3</column>
+            <column name="product_name">Marmalade Oranges</column>
+            <column name="description">1 kg marmalade Oranges</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">19</column>
+            <column name="total_quantity">7</column>
+        </table>
+        <table name="products">
+            <column name="product_id">3</column>
+            <column name="product_name">Marmalade Oranges</column>
+            <column name="description">1 kg marmalade Oranges</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">22</column>
+            <column name="total_quantity">7</column>
+        </table>
+        <table name="products">
+            <column name="product_id">4</column>
+            <column name="product_name">Blueberries</column>
+            <column name="description">Green Giant fresh Blueberries</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">34</column>
+            <column name="total_quantity">15</column>
+        </table>
+        <table name="products">
+            <column name="product_id">4</column>
+            <column name="product_name">Blueberries</column>
+            <column name="description">Green Giant fresh Blueberries</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">45</column>
+            <column name="total_quantity">7</column>
+        </table>
+        <table name="products">
+            <column name="product_id">5</column>
+            <column name="product_name">Grapes</column>
+            <column name="description">Golden Seedless Green Grapes 311gms</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">15</column>
+        </table>
+        <table name="products">
+            <column name="product_id">5</column>
+            <column name="product_name">Grapes</column>
+            <column name="description">Golden Seedless Green Grapes 311gms</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">18</column>
+            <column name="total_quantity">7</column>
+        </table>
+        <table name="products">
+            <column name="product_id">6</column>
+            <column name="product_name">Guava</column>
+            <column name="description">Fresh Guavas 500gm Basket</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">19</column>
+            <column name="total_quantity">15</column>
+        </table>
+        <table name="products">
+            <column name="product_id">6</column>
+            <column name="product_name">Guava</column>
+            <column name="description">Fresh Guavas 500gm Basket</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <table name="products">
+            <column name="product_id">7</column>
+            <column name="product_name">Muskmelon</column>
+            <column name="description">One piece muskmelon (Full) ~750gm</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">29</column>
+            <column name="total_quantity">12</column>
+        </table>
+        <table name="products">
+            <column name="product_id">7</column>
+            <column name="product_name">Muskmelon</column>
+            <column name="description">One piece muskmelon (Full) ~750gm</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">23</column>
+            <column name="total_quantity">32</column>
+        </table>
+        <table name="products">
+            <column name="product_id">8</column>
+            <column name="product_name">Pears</column>
+            <column name="description">Waitrose Organic 4-piece Pears Box</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">13</column>
+        </table>
+        <table name="products">
+            <column name="product_id">8</column>
+            <column name="product_name">Pears</column>
+            <column name="description">Waitrose Organic 4-piece Pears Box</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">34</column>
+            <column name="total_quantity">10</column>
+        </table>
+        <table name="products">
+            <column name="product_id">9</column>
+            <column name="product_name">Plums</column>
+            <column name="description">TESCO Finest Falvorking Plums- 6 Pieces</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">16</column>
+            <column name="total_quantity">12</column>
+        </table>
+        <table name="products">
+            <column name="product_id">9</column>
+            <column name="product_name">Plums</column>
+            <column name="description">TESCO Finest Falvorking Plums- 6 Pieces</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">24</column>
+            <column name="total_quantity">20</column>
+        </table>
+        <table name="products">
+            <column name="product_id">10</column>
+            <column name="product_name">Watermelon</column>
+            <column name="description">One Piece Fresh Watermelon (Full )~1kg</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">35</column>
+            <column name="total_quantity">8</column>
+        </table>
+        <table name="products">
+            <column name="product_id">10</column>
+            <column name="product_name">Watermelon</column>
+            <column name="description">One Piece Fresh Watermelon (Full )~1kg</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">33</column>
+            <column name="total_quantity">19</column>
+        </table>
+        <table name="products">
+            <column name="product_id">11</column>
+            <column name="product_name">Pomegranate</column>
+            <column name="description">One piece Pomegranate ~350gm</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">15</column>
+            <column name="total_quantity">19</column>
+        </table>
+        <table name="products">
+            <column name="product_id">11</column>
+            <column name="product_name">Pomegranate</column>
+            <column name="description">One piece Pomegranate ~350gm</column>
+            <column name="categoryid">1</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">20</column>
+            <column name="total_quantity">21</column>
+        </table>
+        <table name="products">
+            <column name="product_id">12</column>
+            <column name="product_name">Assorted Candies</column>
+            <column name="description">1kg Assorted Candies- Godis</column>
+            <column name="categoryid">4</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">70</column>
+            <column name="total_quantity">0</column>
+        </table>
+        <table name="products">
+            <column name="product_id">12</column>
+            <column name="product_name">Assorted Candies</column>
+            <column name="description">1kg Assorted Candies- Godis</column>
+            <column name="categoryid">4</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">36</column>
+            <column name="total_quantity">100</column>
+        </table>
+        <table name="products">
+            <column name="product_id">13</column>
+            <column name="product_name">Paprika</column>
+            <column name="description">3 Piece Parika Pack</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">10</column>
+        </table>
+        <table name="products">
+            <column name="product_id">13</column>
+            <column name="product_name">Paprika</column>
+            <column name="description">3 Piece Parika Pack</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">20</column>
+            <column name="total_quantity">6</column>
+        </table>
+        <table name="products">
+            <column name="product_id">14</column>
+            <column name="product_name">Baby Carrots</column>
+            <column name="description">Grimway Farms Baby Carrots- Snack Pack Classic Cut and Peeled</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">25</column>
+            <column name="total_quantity">18</column>
+        </table>
+        <table name="products">
+            <column name="product_id">14</column>
+            <column name="product_name">Baby Carrots</column>
+            <column name="description">Grimway Farms Baby Carrots- Snack Pack Classic Cut and Peeled</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">32</column>
+            <column name="total_quantity">10</column>
+        </table>
+        <table name="products">
+            <column name="product_id">15</column>
+            <column name="product_name">Beans</column>
+            <column name="description">500 gm Fresh Beans</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">16</column>
+            <column name="total_quantity">20</column>
+        </table>
+        <table name="products">
+            <column name="product_id">15</column>
+            <column name="product_name">Beans</column>
+            <column name="description">500 gm Fresh Beans</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">19</column>
+            <column name="total_quantity">21</column>
+        </table>
+        <table name="products">
+            <column name="product_id">16</column>
+            <column name="product_name">Beetroot</column>
+            <column name="description">6 Piece Beetroot pack</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">23</column>
+            <column name="total_quantity">12</column>
+        </table>
+        <table name="products">
+            <column name="product_id">16</column>
+            <column name="product_name">Beetroot</column>
+            <column name="description">6 Piece Beetroot pack</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">35</column>
+            <column name="total_quantity">15</column>
+        </table>
+        <table name="products">
+            <column name="product_id">17</column>
+            <column name="product_name">Brinjal</column>
+            <column name="description">Large Brinjal- 2 Pieces ~250gms</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">45</column>
+            <column name="total_quantity">13</column>
+        </table>
+        <table name="products">
+            <column name="product_id">18</column>
+            <column name="product_name">Cabbage</column>
+            <column name="description">One Piece Cabbage (Full, Uncut) ~750gms</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">38</column>
+            <column name="total_quantity">12</column>
+        </table>
+        <table name="products">
+            <column name="product_id">19</column>
+            <column name="product_name">Carrots</column>
+            <column name="description">Natures Finest Products Ltd. 500gm fresh Carrots</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">20</column>
+            <column name="total_quantity">16</column>
+        </table>
+        <table name="products">
+            <column name="product_id">20</column>
+            <column name="product_name">Eldorado Broccoli Pack</column>
+            <column name="description">Eldorado 1kg Broccoli Pack</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">11</column>
+        </table>
+        <table name="products">
+            <column name="product_id">21</column>
+            <column name="product_name">Eldorado Veggie Mix</column>
+            <column name="description">Eldorado Arter, Majis and Paprika Mix- 1 kg</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">24</column>
+            <column name="total_quantity">8</column>
+        </table>
+        <table name="products">
+            <column name="product_id">22</column>
+            <column name="product_name">Findus Wok Mix</column>
+            <column name="description">Findus Gold Youcai and Bamboo shoots wok mix- 450gms</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">26</column>
+            <column name="total_quantity">8</column>
+        </table>
+        <table name="products">
+            <column name="product_id">23</column>
+            <column name="product_name">Onions</column>
+            <column name="description">1kg Onions</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">9</column>
+            <column name="total_quantity">15</column>
+        </table>
+        <table name="products">
+            <column name="product_id">23</column>
+            <column name="product_name">Onions</column>
+            <column name="description">1kg Onions</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">8</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <table name="products">
+            <column name="product_id">24</column>
+            <column name="product_name">Neilson Chocolate Milk</column>
+            <column name="description">Neilson 1% Partly Skimmed Chocolate Milk- 2 Litre Carton</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">34</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <table name="products">
+            <column name="product_id">25</column>
+            <column name="product_name">Arla Yoggi Yogurt- Strawberry</column>
+            <column name="description">Arla Orignial Flavoured Yogurt- Strawberry Flavour- 1 liter 1.3% Fat</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">23</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <table name="products">
+            <column name="product_id">25</column>
+            <column name="product_name">Arla Yoggi Yogurt- Strawberry</column>
+            <column name="description">Arla Orignial Flavoured Yogurt- Strawberry Flavour- 1 liter 1.3% Fat</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">23</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <table name="products">
+            <column name="product_id">26</column>
+            <column name="product_name">Arla Yoggi Yogurt- Vanilla</column>
+            <column name="description">Arla Orignial Flavoured Yogurt- Vanilla Flavour- 1 liter 1.3% Fat</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">35</column>
+        </table>
+        <table name="products">
+            <column name="product_id">26</column>
+            <column name="product_name">Arla Yoggi Yogurt- Vanilla</column>
+            <column name="description">Arla Orignial Flavoured Yogurt- Vanilla Flavour- 1 liter 1.3% Fat</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">35</column>
+        </table>
+        <table name="products">
+            <column name="product_id">27</column>
+            <column name="product_name">Milko Latt Fil Offer</column>
+            <column name="description">Buy one and get another for 50% Off- 0.5% and 1.5% Milk by Milko</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">23</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <table name="products">
+            <column name="product_id">28</column>
+            <column name="product_name">Arla Ekologisk Mellanmjolk</column>
+            <column name="description">Arla Ecological Milk- 1.5% Fat</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <table name="products">
+            <column name="product_id">28</column>
+            <column name="product_name">Arla Ekologisk Mellanmjolk</column>
+            <column name="description">Arla Ecological Milk- 1.5% Fat</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">21</column>
+            <column name="total_quantity">50</column>
+        </table>
+        <table name="products">
+            <column name="product_id">29</column>
+            <column name="product_name">Almond Milk</column>
+            <column name="description">Full Fat Almond Milk- 1 litre Carton</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">33</column>
+            <column name="total_quantity">25</column>
+        </table>
+        <table name="products">
+            <column name="product_id">30</column>
+            <column name="product_name">Fat Free Milk</column>
+            <column name="description">Fat Free Milk- Recycleable Carton- 1litre</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">25</column>
+            <column name="total_quantity">25</column>
+        </table>
+        <table name="products">
+            <column name="product_id">31</column>
+            <column name="product_name">Turkish Yogurt</column>
+            <column name="description">3% Fat Turkish Yogurt Box</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">1</column>
+            <column name="Image"></column>
+            <column name="price">19</column>
+            <column name="total_quantity">10</column>
+        </table>
+        <table name="products">
+            <column name="product_id">31</column>
+            <column name="product_name">Turkish Yogurt</column>
+            <column name="description">3% Fat Turkish Yogurt Box</column>
+            <column name="categoryid">3</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">19</column>
+            <column name="total_quantity">20</column>
+        </table>
+        <table name="products">
+            <column name="product_id">32</column>
+            <column name="product_name">Tomatoes</column>
+            <column name="description">Fresh Red Tomatoes - 1 kg Pack</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">23</column>
+            <column name="total_quantity">50</column>
+        </table>
+        <table name="products">
+            <column name="product_id">33</column>
+            <column name="product_name">Mushrooms</column>
+            <column name="description">Full uncut Mushrooms- 500gms</column>
+            <column name="categoryid">2</column>
+            <column name="store_id">2</column>
+            <column name="Image"></column>
+            <column name="price">20</column>
+            <column name="total_quantity">30</column>
+        </table>
+        <!-- Table products_category -->
+        <table name="products_category">
+            <column name="categoryid">1</column>
+            <column name="categoryname">Fruits</column>
+        </table>
+        <table name="products_category">
+            <column name="categoryid">2</column>
+            <column name="categoryname">Vegetables</column>
+        </table>
+        <table name="products_category">
+            <column name="categoryid">3</column>
+            <column name="categoryname">Diary</column>
+        </table>
+        <table name="products_category">
+            <column name="categoryid">4</column>
+            <column name="categoryname">Candies</column>
+        </table>
+        <!-- Table stores -->
+        <table name="stores">
+            <column name="store_id">1</column>
+            <column name="store_name">Willys</column>
+            <column name="location">Tullskolan</column>
+        </table>
+        <table name="stores">
+            <column name="store_id">2</column>
+            <column name="store_name">ICA</column>
+            <column name="location">Centrum</column>
+        </table>
+        <table name="stores">
+            <column name="store_id">3</column>
+            <column name="store_name">Hemkop</column>
+            <column name="location">Centrum</column>
+        </table>
+        <table name="stores">
+            <column name="store_id">4</column>
+            <column name="store_name">Coop</column>
+            <column name="location">Centrum</column>
+        </table>
+        <!-- Table users -->
+    </database>
+</pma_xml_export>
